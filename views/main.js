@@ -21,7 +21,7 @@ function view (state, emit) {
   return html`
     <body class="code lh-copy bg-pink">
       <main class="pa3 cf center">
-        <section class="fl mw6 w-third-l pa3">
+        <section class="fl mw6 w-third-l pa4 pa3-l">
           <h1>Bankai</h1>
           <p class="mw5">
             <strong>1.</strong>
@@ -37,7 +37,7 @@ function view (state, emit) {
           <a class="pl2" href="https://github.com/choojs/bankai-website">Edit this Site </a>
         </section>
 
-        <section class="fl mw6 w-two-thirds pa3">
+        <section class="fl mw6 w-two-thirds-l pa4 pa3-l">
           ${toHtml(content)}
         </section>
       </main>

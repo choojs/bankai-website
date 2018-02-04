@@ -47,15 +47,37 @@ function view (state, emit) {
 
 function toHtml (src) {
   var renderer = new marked.Renderer()
+  var firstParagraph = true
+  var firstHeading = true
   renderer.heading = function (text, level) {
-    var indent = ''
-    for (var i = 0; i < level; i++) indent += '#'
-    var style = `"margin-left: -${level}rem"`
-    return `<h${level} class="pointer f5" style=${style}>${indent} ${text} […]</h${level}>`
+    if (level === 2 || level === 1) {
+      var indent = ''
+      for (var i = 0; i < level; i++) indent += '#'
+      var style = `"margin-left: -${level}rem"`
+      var ellipsis = firstHeading ? '' : ' […]'
+      var mt = firstHeading ? 'mt4' : ''
+      firstHeading = false
+      return `<h${level} class="pointer f5 ${mt}" style=${style}>${indent} ${text}${ellipsis}</h${level}>`
+    } else {
+      return `<h${level} class="f5 mb3 mt4 dn ttu">${text}</h${level}>`
+    }
   }
 
   renderer.paragraph = function (text) {
-    return `<p class="dark-gray ${justify} dn">${text}</p>`
+    var dn = firstParagraph ? '' : 'dn'
+    firstParagraph = false
+    return `<p class="dark-gray mb3 ${justify} ${dn}">${text}</p>`
+  }
+
+  renderer.list = function (text) {
+    var dn = firstParagraph ? '' : 'dn'
+    firstParagraph = false
+    return `<p class="dark-gray mb3 list ${justify} ${dn}">${text}</p>`
+  }
+
+  renderer.listitem = function (text) {
+    text = text.split('ng>').join('ng><br>').replace(':', '')
+    return `<li class="mt3 list">${text}</li>`
   }
 
   var els = raw(marked(src, { highlight, renderer }))
@@ -64,20 +86,22 @@ function toHtml (src) {
   function level (els) {
     var ret = []
     var root, container
+    var first = true
 
     for (var el of els) {
       var nodeName = el.nodeName.toLowerCase()
-      if (/^h\d{1}$/.test(nodeName)) {
+      if (/^h2$/.test(nodeName)) {
         root = el
         root.addEventListener('click', onclick)
-        container = html`<div class="dn"></div>`
+        container = html`<div class="mb4 ${first ? '' : 'dn'}"></div>`
         ret.push(el)
         ret.push(container)
+        first = false
       } else {
         if (!root || !container) {
           throw new Error('Are you sure you started with a heading at the top of the section?')
         }
-        el.classList.remove('dn') // SSR has all els hidden by default
+        if (el.classList) el.classList.remove('dn') // SSR has all els hidden by default
         container.appendChild(el)
       }
     }

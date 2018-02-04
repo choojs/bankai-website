@@ -51,11 +51,11 @@ function toHtml (src) {
     var indent = ''
     for (var i = 0; i < level; i++) indent += '#'
     var style = `"margin-left: -${level}rem"`
-    return `<h${level} class="pointer f5" style=${style}>${indent} ${text}</h${level}>`
+    return `<h${level} class="pointer f5" style=${style}>${indent} ${text} […]</h${level}>`
   }
 
   renderer.paragraph = function (text) {
-    return `<p class="dark-gray ${justify}">${text}</p>`
+    return `<p class="dark-gray ${justify} dn">${text}</p>`
   }
 
   var els = raw(marked(src, { highlight, renderer }))
@@ -69,7 +69,6 @@ function toHtml (src) {
       var nodeName = el.nodeName.toLowerCase()
       if (/^h\d{1}$/.test(nodeName)) {
         root = el
-        root.innerText += ' […]'
         root.addEventListener('click', onclick)
         container = html`<div class="dn"></div>`
         ret.push(el)
@@ -78,6 +77,7 @@ function toHtml (src) {
         if (!root || !container) {
           throw new Error('Are you sure you started with a heading at the top of the section?')
         }
+        el.classList.remove('dn') // SSR has all els hidden by default
         container.appendChild(el)
       }
     }

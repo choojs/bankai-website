@@ -1,8 +1,11 @@
 var css = require('sheetify')
 var choo = require('choo')
-var store = require('./stores/clicks')
 
 css('tachyons')
+css`
+  .pink { color: rgb(255, 229, 229) }
+  .bg-pink { background-color: rgb(255, 229, 229) }
+`
 
 var app = choo()
 if (process.env.NODE_ENV !== 'production') {
@@ -10,8 +13,6 @@ if (process.env.NODE_ENV !== 'production') {
 } else {
   app.use(require('choo-service-worker')())
 }
-
-app.use(store)
 
 app.route('/', require('./views/main'))
 app.route('/*', require('./views/404'))

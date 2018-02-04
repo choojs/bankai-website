@@ -11,7 +11,7 @@ var justify = css`:host { text-align: justify }`
 
 var content = fs.readFileSync(path.join(__dirname, '../intl/en.md'), 'utf8')
 
-var TITLE = 'bankai-website - main'
+var TITLE = 'Bankai'
 
 module.exports = view
 

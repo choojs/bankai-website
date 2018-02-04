@@ -1,6 +1,6 @@
 {
-  "name": "bankai-website",
-  "short_name": "bankai-website",
+  "name": "bankai",
+  "short_name": "bankai",
   "description": "bankai.choo.io",
   "start_url": "/",
   "display": "standalone",

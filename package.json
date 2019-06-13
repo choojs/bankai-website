@@ -16,7 +16,7 @@
     "choo-service-worker": "^2.4.0",
     "highlight-syntax": "^3.0.2",
     "highlight-syntax-pastel": "^1.0.0",
-    "marked": "^0.5.1",
+    "marked": "^0.6.2",
     "sheetify": "^7.3.3",
     "tachyons": "^4.11.1"
   },

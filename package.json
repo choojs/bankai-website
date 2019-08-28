@@ -16,7 +16,7 @@
     "choo-service-worker": "^3.0.0",
     "highlight-syntax": "^3.0.2",
     "highlight-syntax-pastel": "^1.0.0",
-    "marked": "^0.6.2",
+    "marked": "^0.7.0",
     "tachyons": "^4.11.1"
   },
   "devDependencies": {

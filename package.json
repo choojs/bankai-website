@@ -8,7 +8,7 @@
     "inspect": "bankai inspect index.js",
     "start": "bankai start index.js",
     "test": "standard && npm run test-deps",
-    "test-deps": "dependency-check . && dependency-check . --extra --no-dev -i tachyons"
+    "test-deps": "dependency-check . && dependency-check . --extra --no-dev -i tachyons -i highlight-syntax-pastel"
   },
   "dependencies": {
     "choo": "^6.13.0",
@@ -24,6 +24,6 @@
     "bankai": "^9.15.0",
     "choo-scaffold": "^1.2.0",
     "dependency-check": "^3.2.1",
-    "standard": "^10.0.3"
+    "standard": "^14.0.2"
   }
 }

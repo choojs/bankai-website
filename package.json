@@ -11,19 +11,19 @@
     "test-deps": "dependency-check . && dependency-check . --extra --no-dev -i tachyons -i highlight-syntax-pastel"
   },
   "dependencies": {
-    "choo": "^6.13.0",
-    "choo-devtools": "^2.5.1",
-    "choo-service-worker": "^2.4.0",
+    "choo": "^7.0.0",
+    "choo-devtools": "^3.0.1",
+    "choo-service-worker": "^3.0.0",
     "highlight-syntax": "^3.0.2",
     "highlight-syntax-pastel": "^1.0.0",
     "marked": "^0.6.2",
-    "sheetify": "^7.3.3",
     "tachyons": "^4.11.1"
   },
   "devDependencies": {
     "bankai": "^9.15.0",
     "choo-scaffold": "^1.2.0",
     "dependency-check": "^3.2.1",
+    "sheetify": "^8.0.0",
     "standard": "^14.0.2"
   }
 }
